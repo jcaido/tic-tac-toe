@@ -1,13 +1,21 @@
-import './App.css'
+import { useState } from 'react'
 
 const TURNS = {
   x: 'x',
   o: 'o'
 }
 
-const board = Array(9).fill(null)
+const Square = ({ children, updateBoard, index }) => {
+  return (
+    <div className='square'>
+      { children }
+    </div>
+  )
+}
 
 function App() {
+
+  const [board, setBoard] = useState(['x', 'x', 'o', 'o', 'x', 'o', 'x', 'x', 'o'])
 
   return (
     <main className='board'>
@@ -16,11 +24,9 @@ function App() {
         {
           board.map((_, index) => {
             return(
-              <div className='cell' key={index}>
-                <span className='cell__content'>
-                  {index}
-                </span>
-              </div>
+              <Square key={index} index={index}>
+                {board[index]}
+              </Square>
             )
           })
         }
